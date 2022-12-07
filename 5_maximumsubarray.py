@@ -1,10 +1,5 @@
 class Solution(object):
     def maxSubArray(self, nums):
-        for i in range(1, len(nums)):
-            if nums[i - 1] > 0:
-                nums[i] += nums[i - 1]
-        return max(nums)
-
         """
         https://leetcode.com/problems/maximum-subarray/
         :type nums: List[int]
@@ -48,6 +43,10 @@ class Solution(object):
         In code, we cannot evaluate the preceding item of the first item of the array,
         so we start with the second item at index 1.
         """
+        for i in range(1, len(nums)):
+            if nums[i - 1] > 0:
+                nums[i] += nums[i - 1]
+        return max(nums)
 
 
 

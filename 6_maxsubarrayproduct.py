@@ -5,18 +5,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
 
-        Brute force approach: use 2 loops nested to evaluate the products of all possible
-        subarrays, and push it into a new array at each iteration. Return the max value of
-        the product array.
+        Brute force approach: use 2 nested loops to evaluate the products of all possible
+        subarrays, and push them into a new array at each iteration. Return the max value of
+        the products array.
 
-        result = []
+        products = []
         for i in range(len(nums)):
             for j in range(i, len(nums)):
-                product = 1
+                prod = 1
                 for num in nums[i:j+1]:
-                    product *= num
-                result.append(product)
-        return max(result)
+                    prod *= num
+                result.append(prod)
+        return max(products)
 
 
         The above, however, does not pass LC's time efficiency test. Therefore, the code below
@@ -27,17 +27,22 @@ class Solution(object):
         min_prod = nums[0]
         ans = nums[0]
         for i in range(1, len(nums)):
-            # At each iteration from index 1 to len(nums), we need to evaluate the min and max
-            # values from a list of 3 numbers:
-            # 1) nums[i] 2) max_prod * nums[i] and 3) min_prod * nums[i].
-            # Numbers 2 and 3 are the running min and max products, which can become either
-            # higher or lower than the other at each iteration depending on the value and
-            # signage of nums[i].
-            # By continuously updating the ans to the current max_prod, we arrive at the answer.
+            """
+            From index 1 to len(nums), evaluate min and max values from a set of 3 numbers:
+            1) nums[i] 2) max_prod * nums[i] and 3) min_prod * nums[i]
+            2 and 3 are the running min and max products, which despite their names can become 
+            higher or lower than the other at each iteration depending on the value of 
+            the current nums[i]. We need to keep track of the min values because of the 
+            possibility of lower negative numbers producing a larger product. 
+            By continuously updating ans to the current max, we arrive at the answer.
+            
+            [2,3,-2,4]
+            x) i=1(3):min(3,6,6)=>3; i=2(-2):min(-2,-12,-6)=>-12; i=3(4):min(4,-8,-48)=>-48
+            y) i=1(3):max(3,6,6)=>6; i=2(-2):max(-2,-12,-6)=> -2; i=3(4):max(4,-8,-48)=> 4
+            """
             x = min(nums[i], max_prod * nums[i], min_prod * nums[i])
             y = max(nums[i], max_prod * nums[i], min_prod * nums[i])
-            # [2,3,-2,4]
-            min_prod = x  # i1(3):x(3,6,6)=>6; i2(-2):x(-2,-12,-6)=> -2; i3(4):x(4,-8,-48)=> 4
-            max_prod = y  # i1(3):y(3,6,6)=>3; i2(-2):y(-2,-12,-6)=>-12; i3(4):y(4,-8,-48)=>-48
+            min_prod = x
+            max_prod = y
             ans = max(max_prod, ans)
         return ans
