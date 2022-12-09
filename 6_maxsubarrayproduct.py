@@ -44,5 +44,5 @@ class Solution(object):
             y = max(nums[i], max_prod * nums[i], min_prod * nums[i])
             min_prod = x
             max_prod = y
-            ans = max(max_prod, ans)
+            ans = max(max_prod, ans) # ans is also a running max value starting from nums[0]
         return ans
