@@ -14,8 +14,8 @@ class Solution(object):
         return sum(list)
 
         But the goal is use bitwise operators. So to do that, must use bitwise AND OR XOR NOR and
-        bit-shifts like << (left) and >> (right). These will convert a number into binary and do
-        bitwise operations on each respective digit pairs.
+        bit-shifts like << (left) and >> (right). These will convert numbers into binary and do
+        bitwise operations on each digits.
 
         So consider these simple number conversions and the following bitwise ops.
         0 =  00
@@ -24,7 +24,7 @@ class Solution(object):
         3 =  11
         4 = 100
         5 = 101
-        OR: 2|3 = 3 because in binary, 10|11 => 11
+        OR: 2|3 = 3 because if we operate on each bit-pairs, 10|11 => 11
         XOR: 2^3 => 10^11 => 01
         AND: 2&3 => 10&11 => 10
         Bit shift: (2&3) => 10; (2&3)<<1 => 100. Shift to the left by adding a zero at the right.
