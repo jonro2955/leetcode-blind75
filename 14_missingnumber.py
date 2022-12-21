@@ -40,10 +40,10 @@ class Solution(object):
             sequence = sequence ^ i
         for i in range(len(nums)):
             sequence = sequence ^ i
-            # python remembers the last i(index) even outside the loop
-        # XOR the last number n=(i+1) separately, because it is out of range
+            # python remembers the last for-loop index used, even outside the loop
+            # XOR the last number n=(i+1) separately, because it is out of range
         sequence = sequence ^ (i + 1)
-        return s
+        return sequence
 
         """
         alternate form using python enumerate():
