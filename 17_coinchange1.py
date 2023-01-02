@@ -11,7 +11,8 @@ Example 3: coins = [1,2,5], N = 11.
 Answer is 3 because 5 + 5 + 1 = 11. 2 nickels and a penny results in the fewest coins to make 11
 cents. Using the largest denominations early and as many times as possible will usually result
 in the fewest number of coins, but not always. This approach is called "greedy", and it means
-you read all of the array items beforehand and pick the biggest one first, instead of going from
+you read all of the array items beforehand and pick the biggest one first and as many times as
+possible then move on to the next largest and so on, instead of going from
 left to right in order.
 
 But why doesn't the greedy algorithm work all the time?
