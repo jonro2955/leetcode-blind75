@@ -119,7 +119,7 @@ class Solution(object):
             # Compare coin to each index value
             for i in range(len(ways)):
                 if c <= i:
-                    # ways[ j ] becomes ways[ j - coins[ i ] ] + ways[ j ]
+                    # ways[ i ] becomes ways[ i - coins[ i ] ] + ways[ i ]
                     ways[i] += ways[i - c]
 
         # Finally, return Nth position item of the Ways array
